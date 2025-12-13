@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  fullName      String?
+  notifications Notification[]
+  createdAt     DateTime       @default(now())
+}
+
+model Notification {
+  id               Int                @id @default(autoincrement())
+  title            String
+  content          String
+  channel          Channel
+  status           NotificationStatus @default(PENDING)
+  userId           Int
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  notificationLogs NotificationLog[]
+}
+
+model NotificationLog {
+  id             Int          @id @default(autoincrement())
+  notificationId Int
+  notification   Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  channel        Channel
+  status         String
+  metadata       Json?
+  sentAt         DateTime     @default(now())
+}
+
+enum Channel {
+  EMAIL
+  SMS
+  PUSH
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+}
