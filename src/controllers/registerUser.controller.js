@@ -2,7 +2,7 @@ import { registerUserService } from "../services/registerUser.service.js";
 
 export const registerUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log("email, pass", email, password);
+
   try {
     const { user, token } = await registerUserService.registerUser(
       email,
