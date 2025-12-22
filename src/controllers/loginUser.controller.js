@@ -1,15 +1,13 @@
 import { loginUserService } from "../services/loginUser.service.js";
+import { ValidationError } from "../utils/errors.js";
 
-export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
+export const loginUser = async (req, res, next) => {
   try {
-    if (!email || !password) {
-      return res.status(400).json({
-        message: "Email and password fields are required",
-      });
-    }
+    const { email, password } = req.body;
 
+    if (!email || !password) {
+      throw new ValidationError("Email and password are required");
+    }
     const { user, token } = await loginUserService.loginUser(email, password);
 
     res.status(200).json({
@@ -18,10 +16,6 @@ export const loginUser = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.error("Error logging user:", error);
-    res.status(500).json({
-      error: "Server error while logging user",
-      details: error.message,
-    });
+    next(error);
   }
 };

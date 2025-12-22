@@ -1,9 +1,13 @@
 import { registerUserService } from "../services/registerUser.service.js";
+import { ValidationError } from "../utils/errors.js";
 
-export const registerUser = async (req, res) => {
-  const { email, password } = req.body;
-
+export const registerUser = async (req, res, next) => {
   try {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      throw new ValidationError("Email and password are required");
+    }
     const { user, token } = await registerUserService.registerUser(
       email,
       password
@@ -15,6 +19,6 @@ export const registerUser = async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
