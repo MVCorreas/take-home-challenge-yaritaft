@@ -11,6 +11,10 @@ export const updateNotification = async (req, res, next) => {
       throw new ValidationError("Title, content and channel are required");
     }
 
+    if (isNaN(id)) {
+      throw new ValidationError("Invalid Notification ID");
+    }
+
     const { updatedNotification } =
       await updateNotificationService.updateNotification(
         id,
