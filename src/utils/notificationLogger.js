@@ -1,43 +1,37 @@
 import { prisma } from "../lib/prisma.js";
+import { NotificationStatus } from "../generated/prisma/index.js";
 
 export const notificationLogger = {
-  async logSuccess(notificationId, channel, metadata = {}) {
+  async log(notificationId, channel, isSuccess, metadata = {}) {
+    const status = isSuccess
+      ? NotificationStatus.SENT
+      : NotificationStatus.FAILED;
+    const logStatus = isSuccess ? "success" : "failed";
+
     await Promise.all([
       prisma.notification.update({
         where: { id: notificationId },
-        data: { status: "SENT" },
+        data: { status },
       }),
       prisma.notificationLog.create({
         data: {
           notificationId,
           channel,
-          status: "success",
+          status: logStatus,
           metadata: {
             ...metadata,
-            sentAt: new Date().toISOString(),
+            [isSuccess ? "sentAt" : "failedAt"]: new Date().toISOString(),
           },
         },
       }),
     ]);
   },
 
-  async logFailure(notificationId, channel, error) {
-    await Promise.all([
-      prisma.notification.update({
-        where: { id: notificationId },
-        data: { status: "FAILED" },
-      }),
-      prisma.notificationLog.create({
-        data: {
-          notificationId,
-          channel,
-          status: "failed",
-          metadata: {
-            error: error.message,
-            failedAt: new Date().toISOString(),
-          },
-        },
-      }),
-    ]);
+  logSuccess(notificationId, channel, metadata) {
+    return this.log(notificationId, channel, true, metadata);
+  },
+
+  logFailure(notificationId, channel, error) {
+    return this.log(notificationId, channel, false, { error: error.message });
   },
 };
