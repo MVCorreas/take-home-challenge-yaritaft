@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import { getChannel } from "../utils/channels/channelFactory.js";
 
 export const createNotificationService = {
   async createNotification(title, content, channel, userId) {
@@ -11,6 +12,11 @@ export const createNotificationService = {
       },
     });
 
-    return { newNotification };
+    const channelHandler = getChannel(channel);
+    channelHandler.send(newNotification).catch((error) => {
+      console.error("Channel send failed:", error);
+    });
+
+    return newNotification;
   },
 };
