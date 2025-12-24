@@ -1,6 +1,6 @@
 import { prisma } from "../../lib/prisma.js";
 import { ValidationError } from "../errors.js";
-import { mailgunService } from "../mailgunService.js";
+import { mailgunService } from "../../lib/mailgun.js";
 import { notificationLogger } from "../notificationLogger.js";
 
 export const emailChannel = {
