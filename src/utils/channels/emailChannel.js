@@ -5,7 +5,6 @@ import { notificationLogger } from "../notificationLogger.js";
 
 export const emailChannel = {
   async send(notification) {
-
     try {
       const user = await prisma.user.findUnique({
         where: { id: notification.userId },
@@ -19,6 +18,12 @@ export const emailChannel = {
       }
 
       const recipientName = user.email;
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(recipientName)) {
+        throw new ValidationError("Incorrect email format");
+      }
+
       const result = await mailgunService.sendEmail(
         `${recipientName} <${user.email}>`,
         notification.title,
