@@ -16,15 +16,12 @@ export const pushChannel = {
         );
       }
 
-      // Simulate device token (in real app, store in User model or separate DeviceToken table)
       const deviceToken = `device_token_${user.email.split("@")[0]}`;
 
-      // Validate device token format
       if (!deviceToken || deviceToken.length < 10) {
         throw new ValidationError("Invalid device token");
       }
 
-      // Format push notification payload
       const payload = {
         notification: {
           title: notification.title,
@@ -37,13 +34,10 @@ export const pushChannel = {
         to: deviceToken,
       };
 
-      // Simulate push notification sending (in production, use Firebase FCM, Apple APNS, etc.)
       console.log(`🔔 Push notification sent to device ${deviceToken}`);
 
-      // Log success with detailed metadata
       await notificationLogger.logSuccess(notification.id, "PUSH", {
         deviceToken,
-        payload,
         status: "delivered",
         sentAt: new Date().toISOString(),
       });
