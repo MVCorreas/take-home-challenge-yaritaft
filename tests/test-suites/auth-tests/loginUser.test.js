@@ -1,8 +1,10 @@
 import request from "supertest";
 import app from "../../../src/app.js";
 import { cleanDatabase, closeDatabase } from "../../helpers/prisma-db-setup.js";
+import { prisma } from "../../helpers/prisma-db-setup.js";
+import bcrypt from "bcryptjs";
 
-describe("POST /auth/register", () => {
+describe("POST /auth/login", () => {
   beforeEach(async () => {
     await cleanDatabase();
   });
@@ -11,15 +13,23 @@ describe("POST /auth/register", () => {
     await closeDatabase();
   });
   describe("Successful response", () => {
-    it("should register a new user and return success response", async () => {
-      const res = await request(app).post("/auth/register").send({
-        email: "yamila@mail.com",
+    it("should log a user and return success response", async () => {
+      const hashedPassword = await bcrypt.hash("123456", 10);
+      await prisma.user.create({
+        data: {
+          email: "test@example.com",
+          password: hashedPassword,
+        },
+      });
+
+      const res = await request(app).post("/auth/login").send({
+        email: "test@example.com",
         password: "123456",
       });
 
-      expect(res.statusCode).toBe(201);
-      expect(res.body).toHaveProperty("message", "User registered correctly");
-      expect(res.body.user).toHaveProperty("email", "yamila@mail.com");
+      expect(res.statusCode).toBe(200);
+      expect(res.body).toHaveProperty("message", "Login successful");
+      expect(res.body).toHaveProperty("token");
     });
   });
   describe("Error response", () => {
