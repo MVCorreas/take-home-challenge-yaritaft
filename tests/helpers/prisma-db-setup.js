@@ -11,6 +11,7 @@ const pool = new pg.Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
+
 export const cleanDatabase = async () => {
   await prisma.notificationLog.deleteMany({});
   await prisma.notification.deleteMany({});
@@ -23,3 +24,8 @@ export const closeDatabase = async () => {
 };
 
 export { prisma };
+
+// Global teardown function for Jest
+export default async function globalTeardown() {
+  await closeDatabase();
+}
