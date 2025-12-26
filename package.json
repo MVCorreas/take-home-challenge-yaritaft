@@ -6,9 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --env-file=.env ./src/server.js",
-    "test": "NODE_ENV=test jest --runInBand",
-    "test:watch": "NODE_ENV=test jest --watch --runInBand",
-    "test:coverage": "NODE_ENV=test jest --coverage --runInBand"
+    "test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
