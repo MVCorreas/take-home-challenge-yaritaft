@@ -1,12 +1,17 @@
 import request from "supertest";
 import app from "../../../src/app.js";
-import { cleanDatabase, closeDatabase } from "../../helpers/prisma-db-setup.js";
-import { prisma } from "../../helpers/prisma-db-setup.js";
-import bcrypt from "bcryptjs";
+import {
+  cleanDatabase,
+  closeDatabase,
+  createAuthenticatedUser,
+} from "../../helpers/prisma-db-setup.js";
 
 describe("POST /auth/login", () => {
+  let user;
+
   beforeEach(async () => {
     await cleanDatabase();
+    ({ user } = await createAuthenticatedUser());
   });
 
   afterAll(async () => {
@@ -14,14 +19,6 @@ describe("POST /auth/login", () => {
   });
   describe("Successful response", () => {
     it("should log a user and return success response", async () => {
-      const hashedPassword = await bcrypt.hash("123456", 10);
-      await prisma.user.create({
-        data: {
-          email: "test@example.com",
-          password: hashedPassword,
-        },
-      });
-
       const res = await request(app).post("/auth/login").send({
         email: "test@example.com",
         password: "123456",

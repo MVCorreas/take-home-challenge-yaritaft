@@ -12,7 +12,7 @@ export default {
     '!**/node_modules/**'
   ],
   coverageDirectory: 'coverage',
-  verbose: true,
+  verbose: false,
   forceExit: true,
   clearMocks: true,
   resetMocks: true,
