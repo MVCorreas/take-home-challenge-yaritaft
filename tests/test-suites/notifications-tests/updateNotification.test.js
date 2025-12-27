@@ -32,7 +32,7 @@ describe("PUT /notifications/:id", () => {
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty(
         "message",
-        "Notification updated successfully"
+        "Notification updated successfully",
       );
     });
   });
@@ -51,7 +51,7 @@ describe("PUT /notifications/:id", () => {
       expect(res.statusCode).toBe(400);
       expect(res.body).toHaveProperty(
         "error",
-        "Title, content and channel are required"
+        "Title, content and channel are required",
       );
     });
     it("should throw ValidationError if id is not a number", async () => {

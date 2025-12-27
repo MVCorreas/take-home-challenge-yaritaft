@@ -8,11 +8,11 @@ import {
 
 describe("GET /notifications", () => {
   let token;
-  let notification;
+  let _notification;
 
   beforeEach(async () => {
     await cleanDatabase();
-    ({ token, notification } = await createAuthenticatedUser());
+    ({ token, _notification } = await createAuthenticatedUser());
   });
   afterAll(async () => {
     await closeDatabase();

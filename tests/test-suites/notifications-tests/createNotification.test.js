@@ -5,9 +5,9 @@ import {
   createAuthenticatedUser,
   prisma,
 } from "../../helpers/prisma-db-setup.js";
+import { setTimeout } from "timers/promises";
 
-const waitForAsync = (ms = 200) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+const waitForAsync = (ms = 200) => setTimeout(ms);
 
 describe("POST /notifications", () => {
   let token;

@@ -7,11 +7,9 @@ import {
 } from "../../helpers/prisma-db-setup.js";
 
 describe("POST /auth/login", () => {
-  let user;
-
   beforeEach(async () => {
     await cleanDatabase();
-    ({ user } = await createAuthenticatedUser());
+    await createAuthenticatedUser();
   });
 
   afterAll(async () => {

@@ -22,7 +22,7 @@ export const pushChannel = {
         throw new ValidationError("Invalid device token");
       }
 
-      const payload = {
+      const _payload = {
         notification: {
           title: notification.title,
           body: notification.content,
