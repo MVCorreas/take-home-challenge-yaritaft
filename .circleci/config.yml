@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.1.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:22.11
+      - image: cimg/postgres:13.16
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: notifications_db_test
+    
+    steps:
+      - checkout
+      
+      - node/install-packages:
+          pkg-manager: npm
+      
+      - run:
+          name: Wait for PostgreSQL
+          command: |
+            dockerize -wait tcp://localhost:5432 -timeout 1m
+      
+      - run:
+          name: Run Prisma Migrations
+          command: |
+            DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma migrate deploy
+      
+      - run:
+          name: Run Tests
+          command: |
+            DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --detectOpenHandles
+      
+      - run:
+          name: Run Linter
+          command: npm run lint:strict
+
+workflows:
+  test-workflow:
+    jobs:
+      - test
