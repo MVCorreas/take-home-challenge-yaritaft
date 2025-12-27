@@ -6,16 +6,14 @@ import jwt from "jsonwebtoken";
 
 const { PrismaClient } = pkg;
 
-const connectionString =
-  process.env.DATABASE_URL ||
-  "postgresql://postgres:postgres@localhost:5434/notifications_db_test";
+const connectionString = process.env.DATABASE_URL;
 const pool = new pg.Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 export const createAuthenticatedUser = async (
   email = "test@example.com",
-  password = "123456",
+  password = "123456"
 ) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await prisma.user.create({
@@ -28,7 +26,7 @@ export const createAuthenticatedUser = async (
   const token = jwt.sign(
     { id: user.id, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "24h" },
+    { expiresIn: "24h" }
   );
 
   const notification = await prisma.notification.create({
