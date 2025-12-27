@@ -96,4 +96,4 @@ Integration tests cover all API endpoints with proper database cleanup between t
 
 ### Route
 
-- : [!API Swagger] (http://localhost:3001/api-docs/)
+- **API Swagger** --> http://localhost:3001/api-docs/
