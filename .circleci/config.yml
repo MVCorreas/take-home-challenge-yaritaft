@@ -20,6 +20,10 @@ jobs:
           pkg-manager: npm
       
       - run:
+          name: Generate Prisma Client
+          command: npx prisma generate
+      
+      - run:
           name: Wait for PostgreSQL
           command: |
             dockerize -wait tcp://localhost:5432 -timeout 1m
