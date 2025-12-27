@@ -19,7 +19,7 @@ describe("GET /notifications", () => {
   });
 
   describe("Successful response", () => {
-    it.only("should get all notifications by user", async () => {
+    it("should get all notifications by user", async () => {
       const res = await request(app)
         .get("/notifications")
         .set("Authorization", `Bearer ${token}`);
