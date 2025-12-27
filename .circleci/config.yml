@@ -21,7 +21,7 @@ jobs:
       
       - run:
           name: Generate Prisma Client
-          command: npx prisma generate
+          command: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma generate
       
       - run:
           name: Wait for PostgreSQL
