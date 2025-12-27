@@ -24,7 +24,7 @@ export const updateNotification = async (req, res, next) => {
         channel
       );
 
-    res.status(201).json({
+    res.status(200).json({
       message: "Notification updated successfully",
       updatedNotification,
     });

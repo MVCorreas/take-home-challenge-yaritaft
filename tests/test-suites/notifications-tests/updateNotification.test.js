@@ -29,7 +29,7 @@ describe("PUT /notifications/:id", () => {
           channel: "SMS",
         });
 
-      expect(res.statusCode).toBe(201);
+      expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty(
         "message",
         "Notification updated successfully"
