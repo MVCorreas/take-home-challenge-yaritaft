@@ -12,7 +12,7 @@ export const pushChannel = {
 
       if (!user) {
         throw new ValidationError(
-          `User not found for notification ${notification.id}`
+          `User not found for notification ${notification.id}`,
         );
       }
 

@@ -27,7 +27,7 @@ describe("DELETE /notifications/:id", () => {
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty(
         "message",
-        "Notification deleted successfully"
+        "Notification deleted successfully",
       );
     });
   });

@@ -5,7 +5,7 @@ export const deleteNotificationService = {
     const deletedNotification = await prisma.notification.delete({
       where: {
         id,
-        userId
+        userId,
       },
     });
 

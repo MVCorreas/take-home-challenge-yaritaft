@@ -106,6 +106,6 @@ router.post("/register", registerUser);
  *       401:
  *         description: Invalid credentials
  */
-router.post("/login", loginUser)
+router.post("/login", loginUser);
 
 export default router;

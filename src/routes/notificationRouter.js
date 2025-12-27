@@ -191,6 +191,6 @@ router.delete("/:id", deleteNotification);
  *       401:
  *         description: Unauthorized
  */
-router.get("/", getNotifications)
+router.get("/", getNotifications);
 
 export default router;

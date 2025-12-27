@@ -5,7 +5,6 @@ import { UnauthorizedError } from "../utils/errors.js";
 
 export const loginUserService = {
   async loginUser(email, password) {
-
     const user = await prisma.user.findUnique({
       where: { email },
     });

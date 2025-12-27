@@ -15,7 +15,7 @@ const prisma = new PrismaClient({ adapter });
 
 export const createAuthenticatedUser = async (
   email = "test@example.com",
-  password = "123456"
+  password = "123456",
 ) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await prisma.user.create({
@@ -28,7 +28,7 @@ export const createAuthenticatedUser = async (
   const token = jwt.sign(
     { id: user.id, email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "24h" }
+    { expiresIn: "24h" },
   );
 
   const notification = await prisma.notification.create({

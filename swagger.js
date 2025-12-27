@@ -10,12 +10,12 @@ const doc = {
   schemes: ["http"],
   securityDefinitions: {
     bearerAuth: {
-      type: 'apiKey',
-      in: 'header',
-      name: 'Authorization',
-      description: 'Enter your bearer token in the format: Bearer <token>'
-    }
-  }
+      type: "apiKey",
+      in: "header",
+      name: "Authorization",
+      description: "Enter your bearer token in the format: Bearer <token>",
+    },
+  },
 };
 
 const outputFile = "./swagger_output.json";

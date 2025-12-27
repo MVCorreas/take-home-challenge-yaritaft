@@ -21,7 +21,7 @@ export const updateNotification = async (req, res, next) => {
         userId,
         title,
         content,
-        channel
+        channel,
       );
 
     res.status(200).json({

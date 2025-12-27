@@ -10,13 +10,12 @@ export const createNotification = async (req, res, next) => {
       throw new ValidationError("Title, content and channel are required");
     }
 
-    const newNotification =
-      await createNotificationService.createNotification(
-        title,
-        content,
-        channel,
-        userId
-      );
+    const newNotification = await createNotificationService.createNotification(
+      title,
+      content,
+      channel,
+      userId,
+    );
 
     res.status(201).json({
       message: "Notification created successfully",

@@ -35,7 +35,7 @@ describe("POST /notifications", () => {
       expect(res.statusCode).toBe(201);
       expect(res.body).toHaveProperty(
         "message",
-        "Notification created successfully"
+        "Notification created successfully",
       );
 
       await waitForAsync();
@@ -62,7 +62,7 @@ describe("POST /notifications", () => {
       expect(res.statusCode).toBe(400);
       expect(res.body).toHaveProperty(
         "error",
-        "Title, content and channel are required"
+        "Title, content and channel are required",
       );
     });
   });
