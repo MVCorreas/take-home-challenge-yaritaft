@@ -2,6 +2,10 @@
 
 You will develop a basic Notification management system for authenticated users. The system must allow each user to manage and send notifications through different channels.
 
+### Badges
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main.svg?style=svg&circle-token=CCIPRJ_Mcgw5U1q9EmVyQ5t7vr9Vs_a33c82da4d64ac7f7de10c57a4a476465d09d81d)](https://dl.circleci.com/status-badge/redirect/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main)
+
 ### Features
 
 #### Authentication features
