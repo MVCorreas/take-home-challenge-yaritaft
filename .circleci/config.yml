@@ -21,7 +21,7 @@ jobs:
       
       - run:
           name: Generate Prisma Client
-          command: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma generate
+          command: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma generate --config=prisma.config.ts
       
       - run:
           name: Wait for PostgreSQL
@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Run Prisma Migrations
           command: |
-            DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma migrate deploy
+            DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma migrate deploy --config=prisma.config.ts
       
       - run:
           name: Run Tests
