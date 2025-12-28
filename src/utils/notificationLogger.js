@@ -1,5 +1,5 @@
 import { prisma } from "../lib/prisma.js";
-import { NotificationStatus } from "../generated/prisma/index.js";
+import { NotificationStatus } from "../generated/prisma/index.d.ts";
 
 export const notificationLogger = {
   async log(notificationId, channel, isSuccess, metadata = {}) {
