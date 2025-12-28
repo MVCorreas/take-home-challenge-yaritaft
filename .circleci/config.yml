@@ -6,7 +6,7 @@ orbs:
 jobs:
   test:
     docker:
-      - image: cimg/node:22.11
+      - image: cimg/node:22.19
       - image: cimg/postgres:13.16
         environment:
           POSTGRES_USER: postgres
