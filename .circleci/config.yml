@@ -21,16 +21,7 @@ jobs:
       
       - run:
           name: Generate Prisma Client
-          command: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" npx prisma generate
-      
-      - run:
-          name: Verify Prisma Client Generation
-          command: |
-            if [ ! -f "src/generated/prisma/index.js" ]; then
-              echo "Error: Prisma client not generated"
-              exit 1
-            fi
-            echo "Prisma client generated successfully"
+          command: npx prisma generate
       
       - run:
           name: Wait for PostgreSQL

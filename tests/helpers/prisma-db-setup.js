@@ -53,7 +53,3 @@ export const closeDatabase = async () => {
 };
 
 export { prisma };
-
-export default async function globalTeardown() {
-  await closeDatabase();
-}

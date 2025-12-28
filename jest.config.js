@@ -2,7 +2,7 @@ export default {
   testEnvironment: "node",
   transform: {},
   setupFiles: ["<rootDir>/tests/setup.js"],
-  globalTeardown: "<rootDir>/tests/helpers/prisma-db-setup.js",
+  globalTeardown: "<rootDir>/tests/globalTeardown.js",
   moduleFileExtensions: ["js"],
   testMatch: ["**/tests/**/*.test.js", "**/?(*.)+(spec|test).js"],
   collectCoverageFrom: [
