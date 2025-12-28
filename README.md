@@ -4,7 +4,7 @@ You will develop a basic Notification management system for authenticated users.
 
 ### Badges
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/circleci-project-setup.svg?style=svg&circle-token=CCIPRJ_6cdohi19RP3DQ2YfUiYzLz_a2de8de1261fd7a5f251618a91ea52bead929235)](https://dl.circleci.com/status-badge/redirect/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/circleci-project-setup)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main.svg?style=svg&circle-token=CCIPRJ_1LLohAsd6yrauvpah62kK_ebc9c2c88715464aa2daf504e3fe7526136ceaae)](https://dl.circleci.com/status-badge/redirect/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main)
 
 ### Features
 
