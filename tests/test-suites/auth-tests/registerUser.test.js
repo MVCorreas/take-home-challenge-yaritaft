@@ -35,5 +35,18 @@ describe("POST /auth/register", () => {
         "Email and password are required",
       );
     });
+
+     it("should throw ValidationError if user format is invalid", async () => {
+      const res = await request(app).post("/auth/register").send({
+        email: "invalid_email_address",
+        password: "123456",
+      });
+
+      expect(res.statusCode).toBe(400);
+      expect(res.body).toHaveProperty(
+        "error",
+        "Invalid email format",
+      );
+    });
   });
 });

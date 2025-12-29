@@ -1,6 +1,7 @@
 import { prisma } from "../../lib/prisma.js";
 import { ValidationError } from "../errors.js";
 import { notificationLogger } from "../notificationLogger.js";
+import { validators } from "../validators.js";
 
 export const emailChannel = {
   async send(notification) {
@@ -12,12 +13,11 @@ export const emailChannel = {
 
       if (!user) {
         throw new ValidationError(
-          `User not found for notification ${notification.id}`,
+          `User not found for notification ${notification.id}`
         );
       }
 
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailRegex.test(user.email)) {
+      if (!validators.isValidEmail(user.email)) {
         throw new ValidationError("Invalid email format");
       }
 
