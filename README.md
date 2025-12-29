@@ -6,6 +6,8 @@ You will develop a basic Notification management system for authenticated users.
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main.svg?style=svg&circle-token=CCIPRJ_1LLohAsd6yrauvpah62kK_ebc9c2c88715464aa2daf504e3fe7526136ceaae)](https://dl.circleci.com/status-badge/redirect/circleci/DE5HiRDsw9ehnDCC2oEPAS/F36DUgdsSRgpnLxjzPgBC2/tree/main)
 
+[![Coverage Status](https://coveralls.io/repos/github/MVCorreas/take-home-challenge-yaritaft/badge.svg)](https://coveralls.io/github/MVCorreas/take-home-challenge-yaritaft)
+
 ### Features
 
 #### Authentication features

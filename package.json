@@ -8,6 +8,7 @@
     "dev": "nodemon --env-file=.env ./src/server.js",
     "test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --detectOpenHandles",
     "test:docker": "sh test-docker.sh",
+    "test:coverage": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --runInBand --detectOpenHandles --coverage",
     "lint": "next lint",
     "lint:strict": "eslint . --max-warnings=0",
     "format:check": "prettier --check ."
