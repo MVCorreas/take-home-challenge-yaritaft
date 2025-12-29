@@ -39,8 +39,7 @@ jobs:
           command: |
             DATABASE_URL="postgresql://postgres:postgres@localhost:5432/notifications_db_test" NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --detectOpenHandles --coverage
       
-      - coveralls/upload:
-          path_to_lcov: ./coverage/lcov.info
+      - coveralls/upload
       
       - run:
           name: Run Linter
